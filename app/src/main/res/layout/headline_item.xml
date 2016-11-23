@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="80dp"
+              android:background="@android:color/white"
+              android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/ib_headline"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:backgroundTint="@android:color/transparent"
+        android:src="@drawable/headline"/>
+
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#ffbababa"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"/>
+
+    <com.wrk.myshoppingmall.ui.VerticalViewPager
+        android:id="@+id/vvp_headline"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+</LinearLayout>

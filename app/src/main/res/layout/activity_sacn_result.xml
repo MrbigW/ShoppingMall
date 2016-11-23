@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sacn_result"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wrk.myshoppingmall.activity.ScanResultActivity">
+
+
+    <WebView
+        android:id="@+id/scan_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateTint="#746f6f"/>
+
+    <TextView
+        android:id="@+id/tv_isloading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pb_loading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="正在加载中..."
+        android:textColor="#000"/>
+
+    <ImageView
+        android:id="@+id/iv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_error_page"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/tv_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pb_loading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="加载失败..."
+        android:textColor="#000"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:padding="5dp"
+        android:id="@+id/ibn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/back_bg"
+        android:src="@drawable/wopc_arrow"
+        android:tint="@android:color/white"
+        />
+
+</RelativeLayout>
