@@ -1,6 +1,7 @@
-package com.wrk.myshoppingmall.adapter.home;
+package com.wrk.myshoppingmall.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.PagerAdapter;
@@ -19,6 +20,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wrk.myshoppingmall.R;
+import com.wrk.myshoppingmall.activity.ProductDetailsActivity;
+import com.wrk.myshoppingmall.adapter.home.ChannelAdapter;
+import com.wrk.myshoppingmall.adapter.home.HotGridViewAdapter;
+import com.wrk.myshoppingmall.adapter.home.RecommendGridViewAdapter;
+import com.wrk.myshoppingmall.adapter.home.SeckillRecyclerViewAdapter;
+import com.wrk.myshoppingmall.bean.GoodsBean;
 import com.wrk.myshoppingmall.bean.ResultBean;
 import com.wrk.myshoppingmall.ui.VerticalViewPager;
 import com.wrk.myshoppingmall.utils.Constants;
@@ -35,6 +42,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static com.wrk.myshoppingmall.utils.Constants.GOODS_BEAN;
+
 /**
  * Created by MrbigW on 2016/11/22.
  * weChat:1024057635
@@ -44,6 +53,8 @@ import java.util.List;
  */
 
 public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+
     // 上下文
     private Context mContext;
     // 数据Bean对象
@@ -164,14 +175,23 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ll_hot_more = (LinearLayout) itemView.findViewById(R.id.ll_hot_more);
         }
 
-        public void setData(List<ResultBean.HotInfoBean> data) {
+        public void setData(final List<ResultBean.HotInfoBean> data) {
             gv_hot.setAdapter(new HotGridViewAdapter(mContext, data));
 
             // 设置每项的单击事件
             gv_hot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ToastUtil.showToast(mContext, position + "");
+                    // Toast.makeText(mContext, "position:" + position, Toast.LENGTH_SHORT).show();
+                    String cover_price = data.get(position).getCover_price();
+                    String name = data.get(position).getName();
+                    String figure = data.get(position).getFigure();
+                    String product_id = data.get(position).getProduct_id();
+                    GoodsBean goodsBean = new GoodsBean(name, cover_price, figure, product_id);
+
+                    Intent intent = new Intent(mContext, ProductDetailsActivity.class);
+                    intent.putExtra(GOODS_BEAN, goodsBean);
+                    mContext.startActivity(intent);
                 }
             });
 
@@ -197,14 +217,22 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             ll_recommend_more = (LinearLayout) itemView.findViewById(R.id.ll_recommend_more);
         }
 
-        public void setData(List<ResultBean.RecommendInfoBean> data) {
+        public void setData(final List<ResultBean.RecommendInfoBean> data) {
             gv_recommend.setAdapter(new RecommendGridViewAdapter(mContext, data));
 
             // 设置每项的单击事件
             gv_recommend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ToastUtil.showToast(mContext, position + "");
+                    String cover_price = data.get(position).getCover_price();
+                    String name = data.get(position).getName();
+                    String figure = data.get(position).getFigure();
+                    String product_id = data.get(position).getProduct_id();
+                    GoodsBean goodsBean = new GoodsBean(name, cover_price, figure, product_id);
+
+                    Intent intent = new Intent(mContext, ProductDetailsActivity.class);
+                    intent.putExtra(GOODS_BEAN, goodsBean);
+                    mContext.startActivity(intent);
                 }
             });
 
@@ -260,7 +288,7 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             tvTime = (TextView) itemView.findViewById(R.id.tv_time_seckill);
         }
 
-        public void setData(ResultBean.SeckillInfoBean data) {
+        public void setData(final ResultBean.SeckillInfoBean data) {
             // 设置秒杀时间
             if (isFirst) {
                 dt = (int) (Integer.parseInt(data.getEnd_time()) - System.currentTimeMillis());
@@ -280,7 +308,16 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             mAdapter.setOnSeckillRecyclerView(new SeckillRecyclerViewAdapter.OnSeckillRecyclerView() {
                 @Override
                 public void onClick(int position) {
-                    ToastUtil.showToast(mContext, position + "");
+                    ResultBean.SeckillInfoBean.ListBean listBean = data.getList().get(position);
+                    String name = listBean.getName();
+                    String cover_price = listBean.getCover_price();
+                    String figure = listBean.getFigure();
+                    String product_id = listBean.getProduct_id();
+                    GoodsBean goodsBean = new GoodsBean(name, cover_price, figure, product_id);
+
+                    Intent intent = new Intent(mContext, ProductDetailsActivity.class);
+                    intent.putExtra(GOODS_BEAN, goodsBean);
+                    mContext.startActivity(intent);
                 }
             });
 
@@ -365,7 +402,7 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             banner = (Banner) itemView.findViewById(R.id.banner);
         }
 
-        public void setData(List<ResultBean.BannerInfoBean> bannerInfoBeen) {
+        public void setData(final List<ResultBean.BannerInfoBean> bannerInfoBeen) {
             banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);
             // 设置图片加载器
             banner.setImageLoader(new PicassoImageLoader());
@@ -378,7 +415,7 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             // 设置banner动画效果
             banner.setBannerAnimation(Transformer.Accordion);
             //设置标题集合（当banner样式有显示title时）
-            String[] titles = new String[]{"尚硅谷新学员做客CCTV", "尚硅谷在线课堂震撼发布", "抱歉，是真的没座了"};
+            String[] titles = new String[]{"尚硅谷在线课堂震撼发布", "抱歉，是真的没座了", "尚硅谷新学员做客CCTV"};
             banner.setBannerTitles(Arrays.asList(titles));
             //设置自动轮播，默认为true
             banner.isAutoPlay(true);
@@ -392,7 +429,31 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             banner.setOnBannerClickListener(new OnBannerClickListener() {
                 @Override
                 public void OnBannerClick(int position) {
-                    ToastUtil.showToast(mContext, position + "");
+                    if (position - 1 < bannerInfoBeen.size()) {
+                        String product_id = "";
+                        String name = "";
+                        String cover_price = "";
+                        if (position - 1 == 0) {
+                            product_id = "627";
+                            cover_price = "320.00";
+                            name = "尚硅谷在线课堂";
+                        } else if (position - 1 == 1) {
+                            product_id = "21";
+                            cover_price = "800.00";
+                            name = "尚硅谷抢座";
+                        } else {
+                            product_id = "1341";
+                            cover_price = "150.00";
+                            name = "尚硅谷讲座";
+                        }
+                        String image = bannerInfoBeen.get(position - 1).getImage();
+                        GoodsBean goodsBean = new GoodsBean(name, cover_price, image, product_id);
+
+                        Intent intent = new Intent(mContext, ProductDetailsActivity.class);
+                        intent.putExtra("goods_bean", goodsBean);
+                        mContext.startActivity(intent);
+                    }
+
                 }
             });
         }

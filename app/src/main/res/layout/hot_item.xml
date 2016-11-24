@@ -2,12 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#eeee"
-              android:orientation="vertical"
-              android:padding="10dp">
+              android:background="#FFF"
+              android:orientation="vertical">
 
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:background="#ffbababa"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
 
     <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:id="@+id/ll_hot_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,6 +55,8 @@
 
 
     <GridView
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:id="@+id/gv_hot"
         android:layout_width="match_parent"
         android:layout_height="1020dp"

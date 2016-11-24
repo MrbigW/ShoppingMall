@@ -1,5 +1,6 @@
 package com.wrk.myshoppingmall.activity;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 
 import com.wrk.myshoppingmall.R;
 import com.wrk.myshoppingmall.common.BaseActivity;
-import com.wrk.myshoppingmall.utils.ToastUtil;
+import com.wrk.myshoppingmall.utils.Constants;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,15 +38,14 @@ public class ScanResultActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        String url = this.getIntent().getBundleExtra("data").getString("result");
-        ToastUtil.showToast(this, url);
-        if (url == null && TextUtils.isEmpty(url) && !url.startsWith("http://")) {
-            tvIsloading.setVisibility(View.GONE);
-            ivError.setVisibility(View.VISIBLE);
-            pbLoading.setVisibility(View.GONE);
-            tvError.setVisibility(View.VISIBLE);
+        String content = this.getIntent().getBundleExtra("data").getString("result");
+        if (content == null || TextUtils.isEmpty(content) || !content.startsWith("http://") || !content.startsWith("https://")) {
+            removeCurrentActivity();
+            Intent intent = new Intent(this, ProductDetailsActivity.class);
+            intent.putExtra(Constants.GOODS_SHARE, content);
+            startActivity(intent);
             return;
-        } else {
+        } else if (content.startsWith("http://") || content.startsWith("https://")) {
             mSetting = scanWebview.getSettings();
             mSetting.setJavaScriptEnabled(true);
             mSetting.setBuiltInZoomControls(true);
@@ -62,7 +62,7 @@ public class ScanResultActivity extends BaseActivity {
                 }
             });
 
-            scanWebview.loadUrl(url);
+            scanWebview.loadUrl(content);
         }
     }
 

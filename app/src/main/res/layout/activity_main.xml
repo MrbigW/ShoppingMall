@@ -41,7 +41,7 @@
             android:id="@+id/rb_ask"
             style="@style/main_rb_theme"
             android:drawableTop="@drawable/guide_ask_selector"
-            android:text="问大家"
+            android:text="发现"
             /> <RadioButton
             android:id="@+id/rb_cart"
             style="@style/main_rb_theme"

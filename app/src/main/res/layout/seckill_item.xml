@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="380dp"
+              android:layout_width="match_parent"
               android:layout_height="180dp"
               android:background="#fff"
               android:orientation="vertical"
               android:padding="10dp">
+
 
     <LinearLayout
         android:id="@+id/ll_seckill_more"
@@ -28,9 +29,10 @@
             android:id="@+id/tv_time_seckill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="10sp"
             android:background="@drawable/time_shape"
-            android:padding="5dp"
+            android:padding="3dp"
             android:text="00:00:00"
             android:textColor="#fff"/>
 

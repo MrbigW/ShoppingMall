@@ -3,10 +3,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#fff"
-              android:orientation="vertical"
-              android:padding="10dp">
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:background="#ffbababa"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
 
     <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:id="@+id/ll_recommend_more"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,6 +51,8 @@
     </LinearLayout>
 
     <GridView
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:id="@+id/gv_recommend"
         android:layout_width="match_parent"
         android:layout_height="380dp"

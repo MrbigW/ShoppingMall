@@ -127,30 +127,6 @@ public abstract class LoadingPager extends FrameLayout {
             return;
         }
 
-
-//                AsyncHttpClient client = new AsyncHttpClient();
-//                client.get(url(), params(), new AsyncHttpResponseHandler() {
-//                    @Override
-//                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-//                        if (statusCode == 200 && responseBody.length > 0) {
-//                            resultState = ResultState.SUCCESS;
-//                            resultState.setContent(responseBody);
-//                        } else {
-//                            resultState = ResultState.EMPTY;
-//                            resultState.setContent(null);
-//                        }
-//                        loadPage();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-//                        resultState = ResultState.ERROR;
-//                        resultState.setContent(null);
-//                        loadPage();
-//                    }
-//                });
-//            }
-//        }, 2000);
         UIUtils.getHandler().postDelayed(new Runnable() {
             @Override
             public void run() {

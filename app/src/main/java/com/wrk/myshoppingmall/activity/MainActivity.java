@@ -1,16 +1,21 @@
 package com.wrk.myshoppingmall.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.KeyEvent;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.wrk.myshoppingmall.R;
+import com.wrk.myshoppingmall.common.ActivityManager;
 import com.wrk.myshoppingmall.common.BaseActivity;
 import com.wrk.myshoppingmall.common.BaseFragment;
 import com.wrk.myshoppingmall.fragment.AskFragment;
@@ -18,6 +23,7 @@ import com.wrk.myshoppingmall.fragment.CartFragment;
 import com.wrk.myshoppingmall.fragment.HomeFragment;
 import com.wrk.myshoppingmall.fragment.MeFragment;
 import com.wrk.myshoppingmall.fragment.WeiTaoFragment;
+import com.wrk.myshoppingmall.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -30,6 +36,8 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.rg_main)
     RadioGroup rgMain;
 
+    private LocalBroadcastManager mBroadcastManager;
+
     // Fragment集合
     private ArrayList<BaseFragment> mFragments = new ArrayList<>();
 
@@ -37,6 +45,23 @@ public class MainActivity extends BaseActivity {
     private int pos;
 
     private Fragment mFra;
+    private BroadcastReceiver Switch2CartRecevier = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 跳转至购物车页面
+            rgMain.check(R.id.rb_cart);
+        }
+    };
+    private BroadcastReceiver Switch2HomeRecevier = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 跳转至购物车页面
+            rgMain.check(R.id.rb_home);
+        }
+    };
+
+
+    private FragmentTransaction mTransaction;
 
     @Override
     protected void initData() {
@@ -48,6 +73,12 @@ public class MainActivity extends BaseActivity {
 
         // 默认进来是HomeFragment
         rgMain.check(R.id.rb_home);
+
+        // 注册广播
+        mBroadcastManager = LocalBroadcastManager.getInstance(this);
+        mBroadcastManager.registerReceiver(Switch2CartRecevier, new IntentFilter(Constants.SWITCH2CART));
+        mBroadcastManager.registerReceiver(Switch2HomeRecevier, new IntentFilter(Constants.SWITCH2HOME));
+
     }
 
     /**
@@ -111,7 +142,8 @@ public class MainActivity extends BaseActivity {
      */
     private void switchFragment(Fragment fromFrag, Fragment toFrag) {
 
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        mTransaction = getSupportFragmentManager().beginTransaction();
+
         if (mFra != toFrag) {
             mFra = toFrag;
             if (toFrag != null) {
@@ -119,19 +151,20 @@ public class MainActivity extends BaseActivity {
                 if (!toFrag.isAdded()) {
                     //如果没有添加
                     if (fromFrag != null) {
-                        transaction.hide(fromFrag);
+                        mTransaction.hide(fromFrag);
                     }
-                    transaction.add(R.id.fl_main, toFrag).commit();
+                    mTransaction.add(R.id.fl_main, toFrag).commitAllowingStateLoss();
                 } else {
                     //如果添加了
                     if (fromFrag != null) {
-                        transaction.hide(fromFrag);
+                        mTransaction.hide(fromFrag);
                     }
-                    transaction.show(toFrag).commit();
+                    mTransaction.show(toFrag).commitAllowingStateLoss();
                 }
             }
 
         }
+
 
     }
 
@@ -161,7 +194,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        int size = ActivityManager.getInstance().getAcitivitySize();
+        if (keyCode == KeyEvent.KEYCODE_BACK && size == 1) {
             if (0 != pos) {
                 // 把主页选中
                 rgMain.check(R.id.rb_home);
@@ -208,5 +242,14 @@ public class MainActivity extends BaseActivity {
             int color = getResources().getColor(id);
             getWindow().setStatusBarColor(color);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mBroadcastManager.unregisterReceiver(Switch2HomeRecevier);
+        mBroadcastManager.unregisterReceiver(Switch2CartRecevier);
+
     }
 }

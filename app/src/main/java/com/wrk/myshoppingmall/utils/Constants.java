@@ -4,18 +4,18 @@ package com.wrk.myshoppingmall.utils;
  * Created by Administrator on 2016/9/28.
  */
 public class Constants {
-//    public static final String BASE = "http://192.168.1.146:8080";
+    //    public static final String BASE = "http://192.168.1.146:8080";
     public static final String BASE = "http://10.0.2.2:8080";
 
     // 请求Json数据基本URL
-    public static final String Base_URL_JSON = BASE+"/atguigu/json/";
+    public static final String Base_URL_JSON = BASE + "/atguigu/json/";
 
     // 请求图片基本URL
-    public static final String Base_URl_IMAGE = BASE+"/atguigu/img";
+    public static final String Base_URl_IMAGE = BASE + "/atguigu/img";
 
     //主页路径
     public static final String HOME_URL = Base_URL_JSON + "HOME_URL.json";
-    public static final String TAG_URL = Base_URL_JSON+ "TAG_URL.json";
+    public static final String TAG_URL = Base_URL_JSON + "TAG_URL.json";
     public static final String SKIRT_URL = Base_URL_JSON + "SKIRT_URL.json";
     public static final String NEW_POST_URL = Base_URL_JSON + "NEW_POST_URL.json";
     public static final String HOT_POST_URL = Base_URL_JSON + "HOT_POST_URL.json";
@@ -31,7 +31,7 @@ public class Constants {
     public static final String HOME_PRODUCTS_URL = Base_URL_JSON + "HOME_PRODUCTS_URL.json";
     //文具
     public static final String STATIONERY_URL = Base_URL_JSON + "STATIONERY_URL.json";
-    public static final String DIGIT_URL =Base_URL_JSON +  "DIGIT_URL.json";
+    public static final String DIGIT_URL = Base_URL_JSON + "DIGIT_URL.json";
     public static final String GAME_URL = Base_URL_JSON + "GAME_URL.json";
     //页面的具体数据的id
     public static final String GOODSINFO_URL = Base_URL_JSON + "GOODSINFO_URL.json";
@@ -58,7 +58,17 @@ public class Constants {
     //首饰厂
     public static final String SHOUSHI_STORE = Base_URL_JSON + "SHOUSHI_STORE.json";
 
+    // 切换至首页广播
+    public static final String SWITCH2HOME = "switch2home";
+
+
     public static Boolean isBackHome = false;
+
+    public static final String GOODS_BEAN = "goods_bean";
+    public static final String GOODS_SHARE = "goods_share";
+    // 切换至购物车的广播
+    public static final String SWITCH2CART = "switch2cart";
+
 
 }
 

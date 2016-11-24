@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wrk.myshoppingmall.R;
-import com.wrk.myshoppingmall.adapter.home.HomeRecycleAdapter;
+import com.wrk.myshoppingmall.adapter.HomeRecycleAdapter;
 import com.wrk.myshoppingmall.bean.ResultBean;
 import com.wrk.myshoppingmall.common.BaseFragment;
 import com.wrk.myshoppingmall.utils.Constants;
