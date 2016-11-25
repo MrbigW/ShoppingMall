@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.wrk.myshoppingmall.R;
+import com.wrk.myshoppingmall.activity.GoodsListActivity;
 import com.wrk.myshoppingmall.activity.ProductDetailsActivity;
 import com.wrk.myshoppingmall.adapter.home.ChannelAdapter;
 import com.wrk.myshoppingmall.adapter.home.HotGridViewAdapter;
@@ -383,7 +384,11 @@ public class HomeRecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (position <= 8) {
-                        ToastUtil.showToast(mContext, position + "");
+                        Intent intent = new Intent(mContext, GoodsListActivity.class);
+                        intent.putExtra("position", position);
+                        mContext.startActivity(intent);
+                    } else {
+                        ToastUtil.showToast(mContext, "期待更多!");
                     }
                 }
             });

@@ -60,6 +60,8 @@
         </activity>
         <activity android:name=".activity.SearchActivity">
         </activity>
+        <activity android:name=".activity.GoodsListActivity">
+        </activity>
     </application>
 
 </manifest>

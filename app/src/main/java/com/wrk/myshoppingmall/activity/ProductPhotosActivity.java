@@ -82,6 +82,7 @@ public class ProductPhotosActivity extends BaseActivity {
 
             Picasso.with(container.getContext())
                     .load(mPhoto_url.get(position))
+                    .placeholder(R.drawable.tupian_bg_tmall)
                     .into(photoView);
 
             container.addView(photoView);

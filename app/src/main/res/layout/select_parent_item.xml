@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_select_price"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_marginLeft="30dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:id="@+id/tv_drawer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="价格"
+        android:textColor="@color/color_style"/>
+
+    <TextView
+        android:id="@+id/tv_drawer_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:drawablePadding="10dp"
+        android:drawableRight="@drawable/home_arrow_right"
+        android:text="不限"
+        android:textColor="#303235"/>
+</RelativeLayout>

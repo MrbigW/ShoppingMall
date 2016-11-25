@@ -163,7 +163,6 @@ public class ProductDetailsActivity extends BaseActivity {
         }
 
 
-
     }
 
     private void findSharedProduct() {
@@ -601,7 +600,10 @@ public class ProductDetailsActivity extends BaseActivity {
         public void displayImage(Context context, Object path, ImageView imageView) {
 
             //Picasso 加载图片简单用法
-            Picasso.with(context).load((String) path).into(imageView);
+            Picasso.with(context)
+                    .load((String) path)
+                    .placeholder(R.drawable.tupian_bg_tmall)
+                    .into(imageView);
 
         }
     }

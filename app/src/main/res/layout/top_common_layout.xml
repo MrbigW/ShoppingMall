@@ -5,14 +5,13 @@
               android:orientation="vertical">
 
     <LinearLayout
-        android:background="#FF5001"
+        android:background="@android:color/white"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
 
         <ImageButton
-            android:backgroundTint="@android:color/white"
             android:id="@+id/ib_good_info_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,21 +24,20 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="商品详情"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="20sp" />
 
         <ImageButton
-            android:backgroundTint="@android:color/white"
             android:id="@+id/ib_good_info_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icon_more" />
+            android:background="@drawable/home" />
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:background="#ee8f8a8a" />
 
 </LinearLayout>
