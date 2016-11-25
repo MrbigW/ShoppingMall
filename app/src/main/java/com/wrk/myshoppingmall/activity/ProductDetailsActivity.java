@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,7 +170,6 @@ public class ProductDetailsActivity extends BaseActivity {
         List<ResultBean.BannerInfoBean> act_info = mResultBean.getBanner_info();
         for (int i = 0; i < act_info.size(); i++) {
             if (act_info.get(i).getImage().equals(shareUrl)) {
-                Log.e("222", act_info.get(i).getImage() + "---" + shareUrl);
                 if (i == 0) {
                     mGoodsBean.setName("尚硅谷在线课堂");
                     mGoodsBean.setCover_price("320.00");

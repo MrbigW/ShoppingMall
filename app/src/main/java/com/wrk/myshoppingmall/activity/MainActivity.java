@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
     private BroadcastReceiver Switch2HomeRecevier = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // 跳转至购物车页面
+            // 跳转至页面
             rgMain.check(R.id.rb_home);
         }
     };

@@ -58,6 +58,8 @@
 
         <activity android:name=".activity.SharedActivity">
         </activity>
+        <activity android:name=".activity.SearchActivity">
+        </activity>
     </application>
 
 </manifest>

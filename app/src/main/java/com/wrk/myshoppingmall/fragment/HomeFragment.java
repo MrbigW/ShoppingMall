@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wrk.myshoppingmall.R;
+import com.wrk.myshoppingmall.activity.SearchActivity;
 import com.wrk.myshoppingmall.adapter.HomeRecycleAdapter;
 import com.wrk.myshoppingmall.bean.ResultBean;
 import com.wrk.myshoppingmall.common.BaseFragment;
@@ -126,25 +127,20 @@ public class HomeFragment extends BaseFragment {
                 openScan();
                 break;
             case R.id.iv_main_search:
-                ToastUtil.showToast(getActivity(), "搜索");
+                getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
             case R.id.tv_main_search:
-                ToastUtil.showToast(getActivity(), "搜索文字");
+                getActivity().startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
             case R.id.iv_main_camera:
-                ToastUtil.showToast(getActivity(), "相机");
+                ToastUtil.showToast(getActivity(), "图片识物");
                 break;
             case R.id.ll_main_msg:
                 ToastUtil.showToast(getActivity(), "消息");
                 break;
             case R.id.fab_main:
-                fabMain.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        rvHome.scrollToPosition(0);
-                    }
-                });
-                break;
+                rvHome.scrollToPosition(0);
+
         }
     }
 
