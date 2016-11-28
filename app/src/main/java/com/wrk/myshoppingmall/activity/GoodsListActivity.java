@@ -106,17 +106,14 @@ public class GoodsListActivity extends BaseActivity {
         mExpandableAdapter = new SelectExpandableListViewAdapter(GoodsListActivity.this);
         expandlvFiltrate.setAdapter(mExpandableAdapter);
 
-        // ExpandableListView的父项的点击事件
-        expandlvFiltrate.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                return false;
-            }
-        });
+
         // ExpandableListView的子项的点击事件
         expandlvFiltrate.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                TextView tv_selct_name = (TextView) v.findViewById(R.id.tv_selct_name);
+                ToastUtil.showToast(GoodsListActivity.this, tv_selct_name.getText().toString());
 
                 return true;
             }
@@ -215,6 +212,7 @@ public class GoodsListActivity extends BaseActivity {
     private void openDrawer() {
         tvGoodsListPrice.setTextColor(UIUtils.getColor(R.color.color_tv));
         tvGoodsListSort.setTextColor(UIUtils.getColor(R.color.color_tv));
+        tvGoodsListSelect.setTextColor(UIUtils.getColor(R.color.color_style));
         ivGoodsListArrow.setVisibility(View.GONE);
         drawerRight.openDrawer(Gravity.RIGHT);
     }
@@ -224,12 +222,13 @@ public class GoodsListActivity extends BaseActivity {
     }
 
     private void confirm_select() {
-
+        drawerRight.closeDrawer(Gravity.RIGHT);
     }
 
     private boolean isUp = false;
 
     private void sort_price() {
+        rcvList.scrollToPosition(0);
         ivGoodsListArrow.setVisibility(View.VISIBLE);
         tvGoodsListSort.setTextColor(UIUtils.getColor(R.color.color_tv));
         tvGoodsListPrice.setTextColor(UIUtils.getColor(R.color.color_style));

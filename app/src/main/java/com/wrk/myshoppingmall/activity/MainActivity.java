@@ -59,12 +59,20 @@ public class MainActivity extends BaseActivity {
             rgMain.check(R.id.rb_home);
         }
     };
+    private BroadcastReceiver Switch2MeRecevier = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // 跳转至个人
+            rgMain.check(R.id.rb_me);
+        }
+    };
 
 
     private FragmentTransaction mTransaction;
 
     @Override
     protected void initData() {
+
         // 初始化Fragment并加入集合
         initFragments();
 
@@ -78,7 +86,7 @@ public class MainActivity extends BaseActivity {
         mBroadcastManager = LocalBroadcastManager.getInstance(this);
         mBroadcastManager.registerReceiver(Switch2CartRecevier, new IntentFilter(Constants.SWITCH2CART));
         mBroadcastManager.registerReceiver(Switch2HomeRecevier, new IntentFilter(Constants.SWITCH2HOME));
-
+        mBroadcastManager.registerReceiver(Switch2MeRecevier, new IntentFilter(Constants.SWITCH2ME));
     }
 
     /**
@@ -89,7 +97,15 @@ public class MainActivity extends BaseActivity {
         mFragments.add(new HomeFragment());
         mFragments.add(new WeiTaoFragment());
         mFragments.add(new AskFragment());
-        mFragments.add(new CartFragment());
+        // 为cartFragment设置回调，从购物车跳转至主页面
+        CartFragment cartFragment = new CartFragment();
+        mFragments.add(cartFragment);
+        cartFragment.setOnGoToHome(new CartFragment.onGoToHome() {
+            @Override
+            public void goToHome() {
+                rgMain.check(R.id.rb_home);
+            }
+        });
         mFragments.add(new MeFragment());
     }
 
@@ -247,9 +263,10 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        // 广播的解注册
         mBroadcastManager.unregisterReceiver(Switch2HomeRecevier);
         mBroadcastManager.unregisterReceiver(Switch2CartRecevier);
+        mBroadcastManager.unregisterReceiver(Switch2MeRecevier);
 
     }
 }

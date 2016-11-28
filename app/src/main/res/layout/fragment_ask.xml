@@ -1,15 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+              xmlns:tl="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/white"
         android:gravity="center"
-        android:textSize="30sp"
-        android:textColor="@android:color/black"
-        android:text="问大家"
+        >
+
+        <ImageButton
+            android:id="@+id/ib_found_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/tupian_bg_tmall"/>
+
+        <TextView
+            android:id="@+id/tv_found_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_bg"
+            android:drawableLeft="@drawable/search"
+            android:drawablePadding="5dp"
+            android:drawableTint="#9e9c9c"
+            android:gravity="center_vertical"
+            android:paddingLeft="4dp"
+            android:text="购物相关经验，这里都能找到~"
+            android:textColor="#9e9c9c"
+            android:textSize="13sp"/>
+
+        <ImageButton
+            android:id="@+id/ib_found_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/tb_icon_more_msg_56"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#ee8f8a8a"/>
+
+    <com.wrk.myshoppingmall.ui.CustomSlidingTablyout.SlidingTabLayout
+        android:id="@+id/tl_10"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/tab_bg"
+        tl:tl_indicator_color="@color/tab_bg_select"
+        tl:tl_indicator_corner_radius="0dp"
+        tl:tl_indicator_margin_bottom="0dp"
+        tl:tl_indicator_margin_top="0dp"
+        tl:tl_indicator_style="BLOCK"
+        tl:tl_tab_width="100dp"
+        tl:tl_textSelectColor="@android:color/black"
+        tl:tl_textUnselectColor="@android:color/black"/>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_found"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 
 </LinearLayout>

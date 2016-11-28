@@ -1,4 +1,4 @@
-package com.wrk.myshoppingmall.pay;
+package com.wrk.myshoppingmall.utils.pay;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

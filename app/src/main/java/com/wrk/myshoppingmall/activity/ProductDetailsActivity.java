@@ -26,7 +26,8 @@ import com.wrk.myshoppingmall.R;
 import com.wrk.myshoppingmall.bean.GoodsBean;
 import com.wrk.myshoppingmall.bean.ResultBean;
 import com.wrk.myshoppingmall.common.BaseActivity;
-import com.wrk.myshoppingmall.pay.MyAliPay;
+import com.wrk.myshoppingmall.utils.CartProvider;
+import com.wrk.myshoppingmall.utils.pay.MyAliPay;
 import com.wrk.myshoppingmall.ui.BuyPopUpWindow;
 import com.wrk.myshoppingmall.ui.FlowLayout;
 import com.wrk.myshoppingmall.ui.MorePopUpWindow;
@@ -53,6 +54,9 @@ import butterknife.OnClick;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static com.wrk.myshoppingmall.R.drawable.cart;
+import static com.wrk.myshoppingmall.utils.UIUtils.runOnUiThread;
 
 public class ProductDetailsActivity extends BaseActivity {
 
@@ -112,6 +116,7 @@ public class ProductDetailsActivity extends BaseActivity {
     private GoodsBean mGoodsBean;
 
     private String shareUrl;
+    private CartProvider mCartProvider;
 
     @Override
     protected int getLayoutId() {
@@ -121,6 +126,7 @@ public class ProductDetailsActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        mCartProvider = new CartProvider(this);
         mBroadcastManager = LocalBroadcastManager.getInstance(this);
 
         // 获取传递过来的数据
@@ -386,11 +392,14 @@ public class ProductDetailsActivity extends BaseActivity {
                 int current = nas_add_cart.getValue();
                 String des = mName + " 尺寸:" + SizeTags + " 颜色:" + ColorsTags + " 数量:" + current;
                 if (type == 0) { // 加入购物车
-                    ToastUtil.showToast(ProductDetailsActivity.this, des + " 加入成功");
+                    ToastUtil.showToast(ProductDetailsActivity.this, des + "亲，已经为您加入购物车~");
+                    for (int i = 0; i < nas_add_cart.getValue(); i++) {
+                        mCartProvider.addData(mGoodsBean);
+                    }
+                    mBroadcastManager.sendBroadcast(new Intent(Constants.CART_REFRESH));
                     mShoppingPopUpWindow.dismiss();
                 } else { // 直接购买
                     double totalMoneny = Double.parseDouble(mCover_price) * current;
-
                     ToastUtil.showToast(ProductDetailsActivity.this, des);
                     new MyAliPay(ProductDetailsActivity.this).pay(btn_shopping_confirm, mName, des, String.valueOf(totalMoneny));
                     mShoppingPopUpWindow.dismiss();
@@ -498,6 +507,7 @@ public class ProductDetailsActivity extends BaseActivity {
             textView.setText(colors[i]);
             textView.setTextSize(UIUtils.dp2px(5));
             textView.setTextColor(Color.BLACK);
+            textView.setGravity(Gravity.CENTER);
 
             ViewGroup.MarginLayoutParams mp = new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -559,7 +569,7 @@ public class ProductDetailsActivity extends BaseActivity {
         more_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showToast(ProductDetailsActivity.this, "消息");
+                startActivity(new Intent(ProductDetailsActivity.this, MessageCenterActivity.class));
                 mMorePopUpWindow.dismiss();
             }
         });

@@ -60,15 +60,25 @@ public class Constants {
 
     // 切换至首页广播
     public static final String SWITCH2HOME = "switch2home";
-
+    // 切换至个人的广播
+    public static final String SWITCH2ME = "switch2me";
+    // 切换至购物车的广播
+    public static final String SWITCH2CART = "switch2cart";
+    // 购物车数据更新
+    public static final String CART_REFRESH = "cart_refresh";
 
     public static Boolean isBackHome = false;
 
     public static final String GOODS_BEAN = "goods_bean";
     public static final String GOODS_SHARE = "goods_share";
-    // 切换至购物车的广播
-    public static final String SWITCH2CART = "switch2cart";
 
+    // 登录  http://182.92.5.3:8081/android/user/login?username=s&password=34
+    // 注册  http://182.92.5.3:8081/android/user/reg?username=s&password=34
+    public static final String LOGIN_URL = " http://182.92.5.3:8081/android/user/login";
+    public static final String REGISTER_URL = " http://182.92.5.3:8081/android/user/reg";
+
+    // 是否已登录
+    public static final String IS_LOGIN = "is_login";
 
 }
 

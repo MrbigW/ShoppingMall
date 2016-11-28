@@ -16,7 +16,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
+        android:layout_height="0.5dp"
         android:background="#85bcb9b9"/>
 
     <RadioGroup
@@ -32,17 +32,23 @@
             style="@style/main_rb_theme"
             android:drawableTop="@drawable/guide_home_selector"
             android:text="首页"
-            /> <RadioButton
+            />
+
+        <RadioButton
             android:id="@+id/rb_weitao"
             style="@style/main_rb_theme"
             android:drawableTop="@drawable/guide_weitao_selector"
             android:text="微淘"
-            /> <RadioButton
+            />
+
+        <RadioButton
             android:id="@+id/rb_ask"
             style="@style/main_rb_theme"
             android:drawableTop="@drawable/guide_ask_selector"
             android:text="发现"
-            /> <RadioButton
+            />
+
+        <RadioButton
             android:id="@+id/rb_cart"
             style="@style/main_rb_theme"
             android:drawableTop="@drawable/guide_cart_selector"

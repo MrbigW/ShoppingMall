@@ -89,7 +89,6 @@ public class GoodsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ViewHolder viewHolder = (ViewHolder) holder;
         ((ViewHolder) holder).setData(mPageDataBean.get(position));
     }
 

@@ -8,4 +8,6 @@
     <color name="tv_gb">#F5F5F5</color>
     <color name="color_style">#FF5000</color>
     <color name="color_tv">#333538</color>
+    <color name="tab_bg">#FFBE2A</color>
+    <color name="tab_bg_select">#ffb100</color>
 </resources>

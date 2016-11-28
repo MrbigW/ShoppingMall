@@ -23,8 +23,8 @@ public class SelectExpandableListViewAdapter extends BaseExpandableListAdapter {
     private String[] child_theme = new String[]{"全部", "盗墓笔记", "FUNKO", "GSC", "古风原创", "剑侠情缘", "零食", "秦时明月", "全职高手", "长草颜文字"};
     private String[] child_type = new String[]{"全部", "古风", "和风", "lolita", "日常", "泳衣", "汉风", "胖次"};
 
-
     private Context mContext;
+
 
     public SelectExpandableListViewAdapter(Context context) {
         this.mContext = context;
@@ -112,10 +112,6 @@ public class SelectExpandableListViewAdapter extends BaseExpandableListAdapter {
         convertView = View.inflate(mContext, R.layout.select_child_item, null);
         TextView tv_selct_name = (TextView) convertView.findViewById(R.id.tv_selct_name);
         ImageView iv_drawer_select = (ImageView) convertView.findViewById(R.id.iv_drawer_select);
-
-        if (childPosition == 0) {
-            iv_drawer_select.setVisibility(View.VISIBLE);
-        }
         switch (groupPosition) {
             case 0:
                 tv_selct_name.setText(child_price[childPosition]);

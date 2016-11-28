@@ -42,4 +42,6 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile files('libs/fastjson-1.2.20.jar')
     compile files('libs/alipaySdk-20160809.jar')
+    compile project(':FlycoTabLayout_Lib')
+    compile project(':opendanmaku')
 }

@@ -62,6 +62,14 @@
         </activity>
         <activity android:name=".activity.GoodsListActivity">
         </activity>
+        <activity android:name=".activity.MessageCenterActivity">
+        </activity>
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+        <activity android:name=".activity.RegisterActivity">
+        </activity>
+        <activity android:name=".activity.SettingActivity">
+        </activity>
     </application>
 
 </manifest>

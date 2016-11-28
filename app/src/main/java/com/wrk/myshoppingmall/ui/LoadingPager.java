@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.wrk.myshoppingmall.R;
 import com.wrk.myshoppingmall.utils.DownLoaderUtils;
@@ -68,6 +69,14 @@ public abstract class LoadingPager extends FrameLayout {
         }
         if (view_error == null) {
             view_error = UIUtils.getView(R.layout.page_error);
+            // 重试功能
+            LinearLayout ll_retry = (LinearLayout) view_error.findViewById(R.id.ll_retry);
+            ll_retry.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             addView(view_error, params);
         }
         if (view_empty == null) {
@@ -159,7 +168,7 @@ public abstract class LoadingPager extends FrameLayout {
                             }
                         });
             }
-        },2000);
+        }, 2000);
 
     }
 
